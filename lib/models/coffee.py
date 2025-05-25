@@ -1,22 +1,15 @@
 class Coffee:
     def __init__(self, name: str):
         """Initialize a Coffee with name and empty orders list"""
-        self.name = name  # Uses the setter for validation
+        if not isinstance(name, str) or len(name.strip()) < 3:
+            raise ValueError("Coffee name must be a string with at least 3 characters.")
+        self._name = name.strip()
         self._orders = []
 
     @property
     def name(self) -> str:
-        """Get coffee name"""
+        """Get coffee name (read-only)"""
         return self._name
-
-    @name.setter
-    def name(self, value: str):
-        """Set coffee name with validation"""
-        if not isinstance(value, str) or len(value) < 3:
-            raise ValueError(
-                "Coffee name must be a string with at least 3 characters."
-            )
-        self._name = value
 
     def orders(self) -> list:
         """Return list of all orders for this coffee"""

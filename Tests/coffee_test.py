@@ -41,12 +41,13 @@ class TestCoffee:
 
     # ----- Property Tests -----
     def test_name_property(self, sample_coffee):
-        """Test name getter/setter"""
-        sample_coffee.name = "Mocha"
-        assert sample_coffee.name == "Mocha"
+        """Test that the Coffee name property is immutable"""
+        # Verify the name is correctly set
+        assert sample_coffee.name == "Latte"
         
-        with pytest.raises(ValueError):
-            sample_coffee.name = 123
+        # Verify that attempting to modify the name raises an AttributeError
+        with pytest.raises(AttributeError):
+            sample_coffee.name = "Mocha"
 
     # ----- Order Relationship Tests -----
     def test_order_management(self, sample_coffee, sample_order):
